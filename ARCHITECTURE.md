@@ -91,11 +91,16 @@ If something is wrong, the heartbeat can autonomously renew expired crons, retry
 
 ## Adding a New Skill
 
-1. Create `.claude/skills/{name}/SKILL.md` with the four sections (Input, Process, Output, State Update).
-2. Add a cron entry to `cron-jobs.json` with the schedule and status.
-3. Add the skill to the heartbeat's verification list so it gets health-checked.
+Tell Claude Code what you need:
 
-Test manually first ("Run the {name} skill"), then monitor `progress.txt` and `failed-jobs.log` for the first few scheduled runs.
+```
+Create a new skill called "{name}" that {description}.
+It should run {schedule}. Follow the same SKILL.md pattern
+as the existing skills (Input, Process, Output, State Update).
+Add it to cron-jobs.json and register it with the heartbeat.
+```
+
+Claude Code will create the skill file, update the cron config, and add it to the heartbeat's verification list. Test it manually first ("Run the {name} skill"), then monitor `progress.txt` and `failed-jobs.log` for the first few scheduled runs.
 
 ## Customization
 
