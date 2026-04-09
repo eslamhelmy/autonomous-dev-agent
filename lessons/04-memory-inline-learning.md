@@ -80,7 +80,7 @@ A nightly learning cron is useful for consolidation -- reviewing the day, promot
 2. **Delay.** The agent might repeat the same mistake 5 times before the nightly cron catches it.
 3. **Specificity.** Inline learning captures the exact correction in the exact moment. A nightly review works from summaries.
 
-The daily Learning Loop cron (you will build it later) is a consolidation step. It supplements inline learning. It does not replace it.
+The daily Learning Loop cron (you can add it as a nightly cron using the skill pattern from Lesson 05) is a consolidation step. It supplements inline learning. It does not replace it.
 
 ---
 

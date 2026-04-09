@@ -203,3 +203,5 @@ No new .claude/ files — this lesson is about infrastructure around the agent, 
 - **Don't want Tailscale?** Any VPN or port forwarding works — Tailscale is just the easiest zero-config option
 - **Want a web terminal?** ttyd or Wetty can expose tmux over HTTPS — but adds complexity
 - **Corporate network blocks Tailscale?** Use Cloudflare Tunnel or plain WireGuard instead
+
+Next lesson: you put it all together, review the complete system, and ship it.

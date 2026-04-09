@@ -62,7 +62,7 @@ graph LR
     style R fill:#e67e22,stroke:#f39c12,color:#fff
 ```
 
-1. **Trigger** -- A cron fires, a user prompt arrives, or another skill calls this one.
+1. **Trigger** -- A cron fires.
 2. **Read State** -- The agent reads its state files to understand the current situation.
 3. **Decide** -- Based on priority-map.md and auto-resolver.md, it determines what to do and whether it needs approval.
 4. **Act** -- It executes: generates a draft, queries an API, writes code, runs a tool.
