@@ -7,7 +7,7 @@
 #   - Force pushes to main/master (exit 2 = block)
 #   - Recursive delete from root (exit 2 = block)
 #
-# Register in .claude/settings.local.json:
+# Register in .claude/settings.json:
 #   { "hooks": { "PreToolUse": [{ "type": "command", "command": "bash .claude/hooks/permission-gate.sh" }] } }
 #
 # Exit codes:

@@ -11,7 +11,7 @@
 #      export TELEGRAM_CHAT_ID="your-chat-id"
 #   4. Install jq: brew install jq (macOS) or apt install jq (Linux)
 #
-# Register in .claude/settings.local.json:
+# Register in .claude/settings.json:
 #   { "hooks": { "Stop": [{ "type": "command", "command": "bash .claude/hooks/stop-telegram.sh" }] } }
 #
 # Exit codes:
