@@ -72,22 +72,6 @@ Every skill you build in this course follows this loop.
 
 ---
 
-## Chatbot vs Agent
-
-| Dimension | Chatbot | Dev Agent |
-|---|---|---|
-| **Trigger** | You type a message | Cron job, webhook, or another skill |
-| **Memory** | Conversation window only | File-based state that persists across sessions |
-| **Autonomy** | Does exactly what you ask | Reads rules, decides what to do, acts within boundaries |
-| **Learning** | Forgets between sessions | Writes corrections to files, never repeats mistakes |
-| **Monitoring** | None | Heartbeat checks itself every 2 hours |
-| **Recovery** | You restart the conversation | Agent detects failures, retries, logs to dead-letter queue |
-| **Scope** | Single task | 7+ concurrent scheduled workflows |
-
-A chatbot is a tool you use. An agent is a system that works for you.
-
----
-
 ## What Makes This Possible
 
 Three things make Claude Code suitable for this:
@@ -102,15 +86,13 @@ Three things make Claude Code suitable for this:
 
 Here is what the finished agent runs on autopilot:
 
-| Job | Schedule | What It Does |
-|---|---|---|
-| Daily Planner | 5:33 PM | Reviews calendar, scores the day, plans tomorrow |
-| Git Reviewer | Noon | Summarizes commits across your repos |
-| PR Reviewer | 3x daily | Monitors open PRs, flags risks |
-| Standup Generator | 8 AM | Generates daily standup from tasks and progress |
-| Meeting Ingest | 6:37 PM | Extracts action items from meeting transcripts |
-| Learning Loop | 11:47 PM | Consolidates corrections into permanent rules |
-| Heartbeat | Every 2h | Self-checks: crons alive, state valid, no stale tasks |
+- **Daily Planner** (5:33 PM) -- Reviews calendar, scores the day, plans tomorrow
+- **Git Reviewer** (Noon) -- Summarizes commits across your repos
+- **PR Reviewer** (3x daily) -- Monitors open PRs, flags risks
+- **Standup Generator** (8 AM) -- Generates daily standup from tasks and progress
+- **Meeting Ingest** (6:37 PM) -- Extracts action items from meeting transcripts
+- **Learning Loop** (11:47 PM) -- Consolidates corrections into permanent rules
+- **Heartbeat** (Every 2h) -- Self-checks: crons alive, state valid, no stale tasks
 
 Browser Verify is an on-demand skill -- called by other skills after changes, not on a schedule.
 

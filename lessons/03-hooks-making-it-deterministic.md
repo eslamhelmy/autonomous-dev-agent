@@ -83,12 +83,9 @@ When your agent finishes a task, you want to know about it. This hook sends a Te
 
 **Intent:** Create a shell script that sends a Telegram notification when the agent stops.
 
-**Prompt for Claude Code:**
+You can ask Claude Code to generate this for you. Here is the recommended script to ensure consistent behavior:
 
-```
-Create the file .claude/hooks/stop-telegram.sh with the following content.
-Make it executable.
-
+```bash
 #!/bin/bash
 
 TELEGRAM_BOT_TOKEN="${TELEGRAM_BOT_TOKEN}"
@@ -112,7 +109,7 @@ curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" 
 exit 0
 ```
 
-**Expected output:** An executable script at `.claude/hooks/stop-telegram.sh`.
+Save this as `.claude/hooks/stop-telegram.sh` and make it executable (`chmod +x`).
 
 ---
 
@@ -122,12 +119,9 @@ This hook fires before any tool use and blocks dangerous operations unless you h
 
 **Intent:** Create a hook that warns on file deletion and blocks pushes to main.
 
-**Prompt for Claude Code:**
+You can ask Claude Code to generate this for you. Here is the recommended script to ensure consistent behavior:
 
-```
-Create the file .claude/hooks/permission-gate.sh with the following content.
-Make it executable.
-
+```bash
 #!/bin/bash
 
 # Reads PreToolUse hook input from stdin
@@ -151,7 +145,7 @@ fi
 exit 0
 ```
 
-**Expected output:** An executable script at `.claude/hooks/permission-gate.sh`.
+Save this as `.claude/hooks/permission-gate.sh` and make it executable (`chmod +x`).
 
 ---
 
@@ -185,38 +179,6 @@ Create .claude/settings.local.json with this content:
 ```
 
 **Expected output:** A JSON settings file at `.claude/settings.local.json`.
-
----
-
-## Build It: Test Your Hooks
-
-**Intent:** Verify the Telegram hook works by running it manually.
-
-**Prompt for Claude Code:**
-
-```
-Test the stop-telegram hook by running it manually:
-
-echo '{"stop_reason": "end_turn"}' | bash .claude/hooks/stop-telegram.sh
-
-If TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID are set in your environment,
-you should receive a Telegram message. If they are not set, the script
-should exit silently with code 0.
-```
-
-**Intent:** Verify the permission gate blocks force pushes.
-
-**Prompt for Claude Code:**
-
-```
-Test the permission gate by running:
-
-echo '{"tool_name": "Bash", "tool_input": {"command": "git push --force origin main"}}' | bash .claude/hooks/permission-gate.sh
-echo "Exit code: $?"
-
-Expected: prints "BLOCKED: Force push to main/master is not allowed." and
-exit code 2.
-```
 
 ---
 

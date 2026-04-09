@@ -34,7 +34,7 @@ The core state files:
 | File | Purpose |
 |---|---|
 | `tasks-active.md` | Work in progress |
-| `progress.txt` | Action log |
+| `progress.txt` | Manually-appended action log -- you append entries as you work |
 | `preferences.md` | User identity and rules |
 
 ---

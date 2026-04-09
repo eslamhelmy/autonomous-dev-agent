@@ -193,20 +193,9 @@ Settings:
 **Prompt for Claude Code:**
 
 ```
-Add a new entry to .claude/cron-jobs.json for the PR reviewer:
-
-{
-  "id": "pr-reviewer",
-  "skill": ".claude/skills/pr-reviewer/SKILL.md",
-  "schedule": "0 9,13,17 * * 1-5",
-  "description": "Review open PRs across configured repos",
-  "enabled": true,
-  "expires": "7d",
-  "last_run": null
-}
-
-Keep the existing daily-planner entry. The file should be a JSON array
-with both entries.
+Add a cron entry for the pr-reviewer skill to .claude/cron-jobs.json.
+Schedule it 3x daily on weekdays (9 AM, 1 PM, 5 PM). Set expires to 7d.
+Keep the existing daily-planner entry.
 ```
 
 **Expected output:** cron-jobs.json with two entries.

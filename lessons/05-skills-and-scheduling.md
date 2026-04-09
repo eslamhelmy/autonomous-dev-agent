@@ -254,22 +254,14 @@ Write the daily report to .claude/daily-reports/[date].md
 
 **Intent:** Create the scheduling file with the daily planner as the first entry.
 
+Create a `cron-jobs.json` file with entries for each skill. The prompt handles the format.
+
 **Prompt for Claude Code:**
 
 ```
-Create .claude/cron-jobs.json with this content:
-
-[
-  {
-    "id": "daily-planner",
-    "skill": ".claude/skills/daily-planner/SKILL.md",
-    "schedule": "33 17 * * *",
-    "description": "Daily review, scoring, and tomorrow planning",
-    "enabled": true,
-    "expires": "7d",
-    "last_run": null
-  }
-]
+Create .claude/cron-jobs.json with one entry for the daily-planner skill.
+Schedule it at 5:33 PM daily. Set expires to 7d. Use the skill path
+.claude/skills/daily-planner/SKILL.md.
 ```
 
 **Expected output:** A cron jobs file with one entry.
