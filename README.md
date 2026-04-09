@@ -86,11 +86,21 @@ The architecture is a pattern, not a product. Fork it, swap components, add your
 
 All 5 architecture diagrams are embedded directly in the lessons as Mermaid blocks -- they render natively on GitHub, no images needed.
 
+## Read the Course
+
+The full course is available as blog posts with better reading experience:
+
+**[Read on the blog](https://eslamhelmy.com/blog/dev-agent-course)**
+
+Each lesson is also available as a standalone post -- great for bookmarking or sharing specific topics.
+
 ## Who Made This
 
 Built by [Eslam Helmy](https://github.com/eslamhelmy) -- Lead Engineer at Edenred UAE, YouTube [@arabdevsimplified](https://youtube.com/@arabdevsimplified).
 
 This course was designed, written, and tested using the exact agent system it teaches.
+
+If this is useful, a star helps others find it.
 
 ## License
 
