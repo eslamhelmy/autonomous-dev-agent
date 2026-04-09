@@ -5,19 +5,15 @@
 
 A forkable template for building a persistent, autonomous developer agent with [Claude Code](https://claude.ai/claude-code). No frameworks. No cloud services. Just files, cron jobs, and a feedback loop that makes the agent smarter every day.
 
-## Quick Start
+## Get Started
 
-1. **Clone** -- `git clone https://github.com/eslamhelmy/autonomous-dev-agent.git && cd autonomous-dev-agent`
-2. **Read** -- Open [ARCHITECTURE.md](ARCHITECTURE.md) to understand how every file works
-3. **Edit preferences** -- Fill in `.claude/preferences.md` with your name, role, and rules
-4. **Customize skills** -- Edit the skills in `.claude/skills/` to match your workflow and repos
-5. **Start** -- Run `claude` in this directory. The agent reads CLAUDE.md and begins.
+```bash
+git clone https://github.com/eslamhelmy/autonomous-dev-agent.git && cd autonomous-dev-agent
+```
 
-## Two Ways to Start
+**Already comfortable with Claude Code?** Read [ARCHITECTURE.md](ARCHITECTURE.md), edit `.claude/preferences.md` with your identity, customize the skills, run `claude`.
 
-**Already comfortable with Claude Code?** Start here — read [ARCHITECTURE.md](ARCHITECTURE.md), edit preferences, customize skills, run `claude`.
-
-**Want to understand why every file exists?** Read the [step-by-step course (8 lessons)](https://eslamhelmy.tech/blog/autonomous-dev-agent) — it explains the thinking behind each decision.
+**Want to understand why every file exists?** Read the [step-by-step course (8 lessons)](https://eslamhelmy.tech/blog/dev-agent-course) — it explains the thinking behind each decision.
 
 ## What's Inside
 
