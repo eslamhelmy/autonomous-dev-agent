@@ -11,9 +11,7 @@ A forkable template for building a persistent, autonomous developer agent with [
 git clone https://github.com/eslamhelmy/autonomous-dev-agent.git && cd autonomous-dev-agent
 ```
 
-**Already comfortable with Claude Code?** Read [ARCHITECTURE.md](ARCHITECTURE.md), edit `.claude/preferences.md` with your identity, customize the skills, run `claude`.
-
-**Want to understand why every file exists?** Read the [step-by-step course (8 lessons)](https://eslamhelmy.tech/blog/dev-agent-course) — it explains the thinking behind each decision.
+Read [ARCHITECTURE.md](ARCHITECTURE.md), edit `.claude/preferences.md` with your identity, customize the skills, then run `claude`.
 
 ## What's Inside
 
@@ -46,6 +44,10 @@ git clone https://github.com/eslamhelmy/autonomous-dev-agent.git && cd autonomou
 Built by [Eslam Helmy](https://github.com/eslamhelmy) -- Lead Engineer at Edenred UAE, YouTube [@arabdevsimplified](https://youtube.com/@arabdevsimplified).
 
 If this is useful, a star helps others find it.
+
+## Learn How to Build This
+
+Want to understand why every file exists? Read the [step-by-step course (8 lessons)](https://eslamhelmy.tech/blog/dev-agent-course) — it explains the thinking behind each decision.
 
 ## License
 
