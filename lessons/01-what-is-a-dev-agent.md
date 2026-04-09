@@ -31,6 +31,8 @@ Here is the `.claude/` directory of a fully operational dev agent:
     git-reviewer/SKILL.md
     standup-generator/SKILL.md
     meeting-ingest/SKILL.md
+    learning-loop/SKILL.md
+    browser-verify/SKILL.md
     heartbeat/SKILL.md
 ```
 

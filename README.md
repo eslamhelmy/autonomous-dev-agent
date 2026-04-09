@@ -15,7 +15,7 @@ By the end of this course, you'll have a fully working dev agent with:
 - **CLAUDE.md + state files** -- the agent's brain and memory
 - **Hooks** -- deterministic guardrails (block dangerous operations, notify your phone)
 - **Inline learning** -- the agent corrects itself in real-time, not on a schedule
-- **6 skills** -- daily planner, PR reviewer, git reviewer, standup generator, meeting ingest, heartbeat
+- **8 skills** -- daily planner, PR reviewer, git reviewer, standup generator, meeting ingest, learning loop, browser verify, heartbeat
 - **Cron scheduling** -- skills run on autopilot
 - **Self-healing heartbeat** -- the agent monitors itself and recovers from failures
 - **Remote access** -- control your agent from your phone via tmux + Tailscale
@@ -27,7 +27,7 @@ By the end of this course, you'll have a fully working dev agent with:
   tasks-active.md              # Current work
   progress.txt                 # Action log
   learnings.md                 # What the agent learned
-  cron-jobs.json               # 6 scheduled skills
+  cron-jobs.json               # Scheduled skills
   hooks/
     stop-telegram.sh           # Phone notifications
   skills/
@@ -36,6 +36,8 @@ By the end of this course, you'll have a fully working dev agent with:
     git-reviewer/SKILL.md      # Monitor commits
     standup-generator/SKILL.md # Generate standups
     meeting-ingest/SKILL.md    # Extract action items
+    learning-loop/SKILL.md     # Consolidate daily learnings
+    browser-verify/SKILL.md    # Verify work in browser
     heartbeat/SKILL.md         # Self-monitoring
 ```
 
