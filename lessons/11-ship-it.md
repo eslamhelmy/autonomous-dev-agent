@@ -153,10 +153,10 @@ Here are skills you can build using the patterns you learned:
 - **Review Turnaround** -- Track how long PRs wait for review, nudge reviewers.
 - **Onboarding Buddy** -- Curate resources and check-ins for new team members.
 
-**For content creators:**
-- **Content Pipeline** -- Move scripts through V1 (draft), V2 (refined), V3 (final) stages.
-- **Shorts Generator** -- Extract 3 best short-form clips from a long script.
-- **Social Scheduler** -- Queue posts across platforms with optimal timing.
+**For DevOps/SRE:**
+- **Deployment Monitor** -- Watch production deploys, compare error rates before/after, alert on regressions.
+- **Incident Tracker** -- Pull production incidents from Jira, classify by root cause, track MTTR trends.
+- **Runbook Executor** -- Follow runbook steps automatically for known incident types.
 
 Each of these follows the same pattern: skill file, cron entry, state interactions, heartbeat registration.
 

@@ -26,7 +26,7 @@ We'll also cover what NOT to use — tools that sound great but break in practic
     ├── daily-planner/
     ├── pr-reviewer/
     ├── git-reviewer/
-    ├── email-triage/
+    ├── standup-generator/
     ├── meeting-ingest/
     └── heartbeat/
 ```

@@ -54,6 +54,25 @@ In long-running sessions, Claude Code compacts context to stay within its window
 
 Without a heartbeat, problems accumulate silently until something visibly breaks. With a heartbeat, problems are caught within 2 hours.
 
+```mermaid
+graph TD
+    HB["HEARTBEAT\nevery 2 hours"] --> C1{"progress.txt\nfresh?"}
+    HB --> C2{"Tasks past\ndeadline?"}
+    HB --> C3{"failed-jobs.log\nempty?"}
+    HB --> C4{"cron-jobs.json\nvalid?"}
+    HB --> C5{"Cron jobs\nalive?"}
+    HB --> C6{"Context\n< 60%?"}
+
+    C5 -->|"missing"| FIX["Recreate via\nCronCreate"]
+    C6 -->|"> 60%"| WARN["Warn user:\nrun /compact"]
+    C3 -->|"has entries"| ALERT["Flag for\nreview"]
+
+    style HB fill:#e74c3c,stroke:#c0392b,color:#fff
+    style FIX fill:#27ae60,stroke:#2ecc71,color:#fff
+    style WARN fill:#f39c12,stroke:#e67e22,color:#fff
+    style ALERT fill:#f39c12,stroke:#e67e22,color:#fff
+```
+
 ## See It: What the Heartbeat Checks
 
 | Check | What It Looks At | Alert Level |
@@ -316,7 +335,7 @@ The heartbeat watches everything else. If any job fails, if any state goes stale
 
 - **More frequent heartbeat?** Change to every hour (`0 * * * *`) if you are running many skills and want faster detection.
 - **Less frequent?** Every 4 hours (`0 */4 * * *`) is reasonable for lighter workloads.
-- **Custom checks?** Add skill-specific health checks. For example: "Is the PR review digest less than 24 hours old?" or "Has the content pipeline made progress this week?"
+- **Custom checks?** Add skill-specific health checks. For example: "Is the PR review digest less than 24 hours old?" or "Has the standup been generated today?"
 - **Health dashboard?** Write a simple script that reads the latest heartbeat report and displays it as a terminal dashboard.
 - **Escalation chain?** First heartbeat failure = log only. Second consecutive failure = Telegram. Third = email. Adjust the notification logic in the State Update section.
 - **Team heartbeat?** Add checks for team-shared resources: shared repos, deployment pipelines, shared Slack channels.

@@ -287,4 +287,4 @@ The new skill at `.claude/skills/pr-reviewer/SKILL.md` follows the full Input, P
 - **Team-specific rules?** Add checks for your team's conventions: required reviewers, branch naming, linked issues.
 - **Slack digest?** Add a final step that posts the summary to a Slack webhook instead of (or in addition to) writing a file.
 
-Next lesson: you build two more monitoring skills using the same pattern -- git reviewer and email triage.
+Next lesson: you build two more monitoring skills using the same pattern -- git reviewer and standup generator.

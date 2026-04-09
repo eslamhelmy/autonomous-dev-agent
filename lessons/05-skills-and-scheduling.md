@@ -60,6 +60,39 @@ Key concept: **cron jobs expire after 7 days.** This is a safety feature. If you
 
 To run a scheduled skill, you tell Claude Code: "Run the daily-planner skill." Claude Code reads the SKILL.md file, follows the instructions, and updates state.
 
+```mermaid
+graph LR
+    subgraph "Scheduling"
+        CJ["cron-jobs.json"] -->|"8:30 AM"| SG
+        CJ -->|"12:00 PM"| GR
+        CJ -->|"5:33 PM"| DP
+        CJ -->|"every 2h"| HB
+    end
+
+    subgraph "Skills"
+        DP["daily-planner\nSKILL.md"]
+        GR["git-reviewer\nSKILL.md"]
+        SG["standup-generator\nSKILL.md"]
+        HB["heartbeat\nSKILL.md"]
+    end
+
+    subgraph "Shared State"
+        TA["tasks-active.md"]
+        PT["progress.txt"]
+        TC["tasks-completed.md"]
+    end
+
+    DP --> TA
+    DP --> PT
+    GR --> PT
+    SG -->|"reads"| PT
+    SG -->|"reads"| TC
+    HB -.->|"recreates expired"| CJ
+
+    style CJ fill:#3498db,stroke:#2980b9,color:#fff
+    style HB fill:#e74c3c,stroke:#c0392b,color:#fff
+```
+
 ## See It: Priority Levels
 
 Not all tasks are equal. The priority map defines four levels:

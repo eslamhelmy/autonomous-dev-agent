@@ -21,27 +21,20 @@ Here is the `.claude/` directory of a fully operational dev agent:
   error-log.md               # Past mistakes -- never repeat
   auto-resolver.md           # What to decide alone vs escalate
   priority-map.md            # 4 priority levels with rules
-  pipeline.json              # Content pipeline state
-  prd.json                   # Feature story state
-  cron-jobs.json             # 12 scheduled jobs
+  cron-jobs.json             # 6 scheduled jobs
   failed-jobs.log            # Dead-letter queue
   hooks/
     stop-telegram.sh         # Sends notification when agent finishes
   skills/
     daily-planner/SKILL.md
-    content-creator/SKILL.md
+    pr-reviewer/SKILL.md
     git-reviewer/SKILL.md
     standup-generator/SKILL.md
     meeting-ingest/SKILL.md
-    learning-loop/SKILL.md
-    shorts-generator/SKILL.md
-    ralph-loop/SKILL.md
-    browser-verify/SKILL.md
     heartbeat/SKILL.md
-    pr-reviewer/SKILL.md
 ```
 
-This agent has 12 cron jobs running. It sends Telegram notifications when tasks finish. It monitors GitHub repos, generates standups, ingests meeting transcripts, and self-heals when something breaks. It learns from corrections and gets better every week.
+This agent has 6 cron jobs running. It sends Telegram notifications when tasks finish. It monitors GitHub repos, reviews PRs, generates standups, ingests meeting transcripts, and self-heals when something breaks. It learns from corrections and gets better every week.
 
 ---
 
@@ -51,6 +44,20 @@ Every agent action follows the same cycle:
 
 ```
 Trigger --> Read State --> Decide --> Act --> Verify --> Update State --> Report
+```
+
+```mermaid
+graph LR
+    T[TRIGGER] -->|cron/webhook| D[DECIDE]
+    D -->|read state| A[ACT]
+    A -->|execute| V[VERIFY]
+    V -->|check result| R[REPORT]
+    R -->|next cycle| T
+    style T fill:#e67e22,stroke:#f39c12,color:#fff
+    style D fill:#e67e22,stroke:#f39c12,color:#fff
+    style A fill:#e67e22,stroke:#f39c12,color:#fff
+    style V fill:#27ae60,stroke:#2ecc71,color:#fff
+    style R fill:#e67e22,stroke:#f39c12,color:#fff
 ```
 
 1. **Trigger** -- A cron fires, a user prompt arrives, or another skill calls this one.
@@ -99,24 +106,18 @@ Every piece of agent state lives in plain text files inside `.claude/`. Tasks, p
 
 ---
 
-## The 12 Scheduled Jobs
+## The 6 Scheduled Jobs
 
 Here is what the finished agent runs on autopilot:
 
 | Job | Schedule | What It Does |
 |---|---|---|
 | Daily Planner | 5:33 PM | Reviews calendar, scores the day, plans tomorrow |
-| Content Creator | Every 5h | Advances content pipeline V1 to V2 to V3 |
 | Git Reviewer | Noon | Summarizes commits across your repos |
-| Standup Generator | 8 AM | Generates daily standup from tasks, PRs, and progress |
+| PR Reviewer | 3x daily | Monitors open PRs, flags risks |
 | Meeting Ingest | 6:37 PM | Extracts action items from meeting transcripts |
-| Learning Loop | 11:47 PM | Consolidates patterns from the day |
+| Standup Generator | 8 AM | Generates daily standup from tasks and progress |
 | Heartbeat | Every 2h | Self-checks: crons alive, state valid, no stale tasks |
-| PR Reviewer | Configurable | Monitors open PRs, flags risks |
-| Shorts Generator | On demand | Converts long scripts into 3 short-form clips |
-| Ralph Loop | On demand | Iterates on feature stories until acceptance criteria pass |
-| Browser Verify | On demand | Verifies agent work in a real browser |
-| Weekly Summary | Weekly | Aggregates the week into a single report |
 
 ---
 
@@ -147,7 +148,7 @@ Before you start building, think about your own workflow:
 - What repos do you need monitored?
 - Do you have meeting transcripts to ingest?
 - What does your daily standup look like?
-- What content pipeline do you run?
+- What recurring tasks could be automated?
 
 The system you build will be personal. The architecture is universal. The skills are yours to customize.
 

@@ -48,6 +48,30 @@ Different corrections go to different files:
 
 This routing is defined in CLAUDE.md. The agent reads the rules and follows them. You do not need to tell it which file to update -- it routes automatically based on the type of correction.
 
+```mermaid
+graph TD
+    UC["User corrects agent"] --> R{"Route by type"}
+    R -->|style/format| P["preferences.md"]
+    R -->|bug/error| E["error-log.md"]
+    R -->|good approach| LP["learnings.md\n(Patterns)"]
+    R -->|bad approach| LM["learnings.md\n(Mistakes)"]
+
+    P --> CL["CLAUDE.md"]
+    E --> CL
+    LP --> CL
+    LM --> CL
+
+    CL -.->|"promoted after 3+ occurrences"| PERM["Permanent rule"]
+
+    style UC fill:#3498db,stroke:#2980b9,color:#fff
+    style R fill:#f39c12,stroke:#e67e22,color:#fff
+    style P fill:#27ae60,stroke:#2ecc71,color:#fff
+    style E fill:#e74c3c,stroke:#c0392b,color:#fff
+    style LP fill:#27ae60,stroke:#2ecc71,color:#fff
+    style LM fill:#e74c3c,stroke:#c0392b,color:#fff
+    style PERM fill:#9b59b6,stroke:#8e44ad,color:#fff
+```
+
 ## See It: Why Not Just Use a Cron?
 
 A nightly learning cron is useful for consolidation -- reviewing the day, promoting repeated patterns, cleaning up. But it is not a substitute for inline learning. Here is why:
@@ -152,7 +176,7 @@ Rules for what the agent can decide alone vs what needs human approval.
 - Push code to any remote repository
 - Send messages to anyone (email, Slack, Telegram on behalf of user)
 - Create or modify calendar events
-- Publish content (blog, social, YouTube)
+- Publish to external platforms
 - Delete any file or data
 - Modify CI/CD pipelines
 - Run commands with side effects on production systems
@@ -324,7 +348,7 @@ Rules for what the agent can decide alone vs what needs human approval.
 - Push code to any remote repository
 - Send messages to anyone (email, Slack, Telegram on behalf of user)
 - Create or modify calendar events
-- Publish content (blog, social, YouTube)
+- Publish to external platforms
 - Delete any file or data
 - Modify CI/CD pipelines
 - Run commands with side effects on production systems

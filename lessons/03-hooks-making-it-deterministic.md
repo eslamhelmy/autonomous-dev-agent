@@ -33,6 +33,30 @@ Claude Code emits events at specific points during a session. You can attach hoo
 | `PreCompact` | Before context compaction |
 | `SessionEnd` | Session is closing |
 
+```mermaid
+graph TD
+    subgraph "Claude Code Session Events"
+        SS[SessionStart] --> UPS[UserPromptSubmit]
+        UPS --> PreTU[PreToolUse]
+        PreTU --> PostTU[PostToolUse]
+        PostTU --> N[Notification]
+        N --> ST[Stop]
+        ST --> SAS[SubagentStop]
+        SAS --> PC[PreCompact]
+        PC --> SE[SessionEnd]
+    end
+
+    subgraph "Your Hooks"
+        PreTU -.->|matcher: Bash| BPM["block-push-main.sh\nEXIT 2 = BLOCK"]
+        ST -.->|always| STG["stop-telegram.sh\nNotify phone"]
+        N -.->|matcher: permission_prompt| PG["permission-gate.sh\nAlert: check terminal"]
+    end
+
+    style BPM fill:#e74c3c,stroke:#c0392b,color:#fff
+    style STG fill:#27ae60,stroke:#2ecc71,color:#fff
+    style PG fill:#f39c12,stroke:#e67e22,color:#fff
+```
+
 The two most useful events for your first agent: `Stop` (send a notification when work finishes) and `PreToolUse` (block dangerous operations).
 
 ## See It: Hook Types

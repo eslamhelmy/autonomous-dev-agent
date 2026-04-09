@@ -82,7 +82,7 @@ The architecture is a pattern, not a product. Fork it, swap components, add your
 
 ## Diagrams
 
-Mermaid diagrams are embedded in the lessons and render natively on GitHub. See the [diagrams directory](diagrams/) for all 5 architecture diagrams.
+All 5 architecture diagrams are embedded directly in the lessons as Mermaid blocks -- they render natively on GitHub, no images needed.
 
 ## Who Made This
 
