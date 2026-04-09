@@ -13,11 +13,11 @@ A forkable template for building a persistent, autonomous developer agent with [
 4. **Customize skills** -- Edit the skills in `.claude/skills/` to match your workflow and repos
 5. **Start** -- Run `claude` in this directory. The agent reads CLAUDE.md and begins.
 
-## Learn How to Build This
+## Two Ways to Start
 
-This repo is the template. The step-by-step course that explains every decision lives on the blog:
+**Already comfortable with Claude Code?** Start here — read [ARCHITECTURE.md](ARCHITECTURE.md), edit preferences, customize skills, run `claude`.
 
-**[Read the full course on the blog](https://eslamhelmy.tech/blog/dev-agent-course)**
+**Want to understand why every file exists?** Read the [step-by-step course (8 lessons)](https://eslamhelmy.tech/blog/dev-agent-course) — it explains the thinking behind each decision.
 
 ## What's Inside
 
