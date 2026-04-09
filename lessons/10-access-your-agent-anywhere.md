@@ -51,72 +51,31 @@ Three tools, 10-minute setup:
 
 ## Step 1: Install tmux
 
-**Intent:** Create an immortal terminal session for your agent.
-
-**Bash (system install):**
 ```bash
-# macOS
-brew install tmux
-
-# Ubuntu/Debian
-sudo apt install tmux
-
-# Verify
-tmux -V
+brew install tmux            # macOS (or: sudo apt install tmux)
+tmux new -s agent            # create a named session
+# Ctrl+B then D to detach
+tmux attach -t agent         # reattach from anywhere
 ```
 
-**Create a named session and start Claude Code:**
-```bash
-tmux new -s agent
-# Now you're inside the tmux session
-claude
-```
-
-**Detach without killing it:** Press `Ctrl+B` then `D`. The session keeps running.
-
-**Reattach from anywhere:**
-```bash
-tmux attach -t agent
-```
-
-Close your terminal. Open it again. Run `tmux attach -t agent`. Your agent is still there, mid-conversation, context intact.
+tmux keeps your agent session alive after disconnect -- close the terminal, reattach later, context intact.
 
 ---
 
 ## Step 2: Install Tailscale
 
-**Intent:** Make your machine reachable from your phone without touching your router.
-
-**Bash:**
 ```bash
-# macOS
-brew install tailscale
-
-# Ubuntu/Debian
-curl -fsSL https://tailscale.com/install.sh | sh
-
-# Start and authenticate
-sudo tailscale up
+brew install tailscale       # macOS (or: curl -fsSL https://tailscale.com/install.sh | sh)
+sudo tailscale up            # authenticate via browser link
 ```
 
-Follow the browser link to authenticate. Your machine gets a Tailscale IP (e.g., `100.x.y.z`) and a hostname (e.g., `eslams-macbook`).
-
-**Verify from another device on the same Tailscale network:**
-```bash
-ping eslams-macbook
-```
+Your machine gets a Tailscale IP (e.g., `100.x.y.z`) reachable from any device on your Tailscale network.
 
 ---
 
 ## Step 3: Install Termius on Your Phone
 
-1. Download Termius from App Store / Play Store
-2. Add a new host:
-   - Hostname: your Tailscale IP or hostname
-   - Username: your macOS/Linux username
-   - Auth: SSH key (recommended) or password
-3. Connect
-4. Run: `tmux attach -t agent`
+Download Termius from App Store / Play Store. Add a host using your Tailscale IP, your username, and SSH key auth. Connect and run `tmux attach -t agent`.
 
 ---
 
@@ -153,10 +112,6 @@ Your Phone (Termius)
           → Telegram notifications to your phone
           → Heartbeat self-healing every 2h
 ```
-
-You're at dinner. Your phone buzzes — Telegram notification: "Daily plan ready. 3 meetings tomorrow, 2 tasks carried forward, day score: 8/10."
-
-You want to check details? Open Termius, `tmux attach -t agent`, you're in.
 
 ---
 

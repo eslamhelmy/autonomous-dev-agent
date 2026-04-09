@@ -45,23 +45,7 @@ This is the complete system. No external database. No cloud service beyond the A
 
 ## The Universal Pattern
 
-Every skill you built follows the same cycle:
-
-```
-Trigger --> Read State --> Decide --> Act --> Verify --> Update State --> Report
-```
-
-| Step | Daily Planner | PR Reviewer | Meeting Ingest | Heartbeat |
-|---|---|---|---|---|
-| **Trigger** | 5:33 PM cron | 3x daily cron | 6:37 PM cron | Every 2h cron |
-| **Read State** | tasks, progress | preferences (repos) | preferences, tasks | everything |
-| **Decide** | Score the day | Flag risky PRs | Extract vs skip | Healthy vs degraded |
-| **Act** | Generate report | Query GitHub | Parse transcripts | Run all checks |
-| **Verify** | Report has content | All repos scanned | No duplicates | No false positives |
-| **Update State** | progress.txt | progress.txt, tasks | tasks, progress | crons, failed-jobs |
-| **Report** | Daily report file | PR digest file | Meeting notes | Health report |
-
-Any new skill slots in without modifying the existing architecture.
+Every skill follows the same cycle: read state, decide, act, verify, update state, report. Only the trigger and data source differ.
 
 ---
 
@@ -88,13 +72,9 @@ Everything in this system is replaceable. Here are the most common swaps:
 | Component | Default | Alternatives |
 |---|---|---|
 | **Notifications** | Telegram | Slack webhook, Discord webhook, email, Pushover, ntfy |
-| **Email** | Gmail (MCP) | Outlook/Graph API, Fastmail, ProtonMail bridge |
-| **Calendar** | Google Calendar | Outlook Calendar, iCal, Fantastical |
-| **Meeting Notes** | Granola | Otter.ai, Teams transcripts, Fireflies, manual upload |
 | **Git Hosting** | GitHub (gh CLI) | GitLab (glab), Bitbucket, Azure DevOps |
 | **Persistent Session** | tmux | screen, Zellij, VS Code remote |
 | **Remote Access** | Tailscale | Cloudflare Tunnel, ngrok, WireGuard |
-| **Mobile SSH** | Termius | Blink Shell, Prompt 3, JuiceSSH |
 
 To swap a component: update the relevant skill's Process section and preferences.md. The architecture stays the same.
 
@@ -112,17 +92,7 @@ Example skills you can build using the same pattern (skill file, cron entry, sta
 
 ## The Compound Effect
 
-Your agent gets better over time. Here is why:
-
-**Week 1:** You correct the agent 10 times. Each correction is immediately written to preferences.md, error-log.md, or learnings.md.
-
-**Week 2:** The agent reads those files at startup. It avoids the mistakes from week 1. You correct it 6 times. Each correction is recorded.
-
-**Week 4:** The agent knows your preferences, avoids 15+ past mistakes, and has accumulated 20+ patterns. Corrections drop to 2-3 per week.
-
-**Month 2:** The learning loop has promoted the most common patterns to CLAUDE.md. The agent operates almost independently. You mostly review output rather than correct it.
-
-This is the compound effect of inline learning. Every correction makes every future session better. The investment is front-loaded. The returns are permanent.
+Each correction is recorded and read at startup. The effect compounds -- week 1 you correct 10 times, month 2 you correct 2-3 times.
 
 ---
 

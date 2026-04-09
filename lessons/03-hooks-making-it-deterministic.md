@@ -59,18 +59,7 @@ graph TD
 
 The two most useful events for your first agent: `Stop` (send a notification when work finishes) and `PreToolUse` (block dangerous operations).
 
-## See It: Hook Types
-
-Each hook has a type that determines what it does:
-
-| Type | What It Does |
-|---|---|
-| `command` | Runs a shell command. This is the primary type you will use. |
-| `prompt` | Injects a prompt into the conversation. |
-| `agent` | Spawns a sub-agent to handle the event. |
-| `http` | Sends an HTTP request to a URL. |
-
-For this course, you will use `command` hooks almost exclusively. They are simple, testable, and debuggable.
+Hooks use the `command` type -- a shell script that runs on the event.
 
 ## See It: Exit Codes
 
@@ -84,29 +73,13 @@ When a hook runs, its exit code determines what happens next:
 
 Exit code 2 is your safety net. A `PreToolUse` hook that exits with code 2 will prevent the tool from executing. This is how you stop the agent from doing something dangerous.
 
-## See It: Matchers
-
-Hooks can use matchers to fire only on specific tools. The `tool_name` matcher takes a regex pattern:
-
-```json
-{
-  "matcher": {
-    "tool_name": "^Bash$"
-  }
-}
-```
-
-This hook fires only when the agent is about to use the Bash tool. Without a matcher, the hook fires on every event of that type.
-
----
-
 ## Build It: Telegram Notification Hook
 
 When your agent finishes a task, you want to know about it. This hook sends a Telegram message every time Claude Code reaches a `Stop` event.
 
 **Prerequisites:**
 - You need a Telegram bot token and your chat ID. Create a bot via @BotFather on Telegram and send it a message to get your chat ID.
-- You need `jq` installed. The hook scripts use it to parse JSON input from Claude Code. Install it with `brew install jq` (macOS) or `apt install jq` (Linux).
+- Install `jq` for JSON parsing: `brew install jq` (macOS) or `apt install jq` (Linux).
 
 **Intent:** Create a shell script that sends a Telegram notification when the agent stops.
 

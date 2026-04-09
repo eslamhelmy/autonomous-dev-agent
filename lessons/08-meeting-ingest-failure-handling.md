@@ -36,36 +36,7 @@ your-project/
 
 ---
 
-## See It: The Signal Source Pattern
-
-Meeting ingest follows a slightly different pattern than the monitoring skills. Instead of signal-query-prioritize-report, it uses a five-step pattern for processing external signal sources:
-
-```
-Signal --> Extract --> Route --> Track --> Follow Up
-```
-
-1. **Signal** -- A meeting transcript arrives (from Granola, Otter, manual upload, or calendar integration).
-2. **Extract** -- Pull out structured data: action items, decisions, key topics, participants.
-3. **Route** -- Send each extracted item to the right place: tasks go to tasks-active.md, decisions go to a meeting notes file, follow-ups get scheduled.
-4. **Track** -- Update state to record that this meeting was processed (idempotency).
-5. **Follow Up** -- If any action item has a deadline, create a reminder.
-
-This pattern applies to any external data source: meeting notes, Slack threads, document reviews, customer feedback.
-
-## See It: Why Failure Handling Matters
-
-- **Without it:** A skill crashes silently, no log entry, no notification -- you miss output for days without knowing.
-- **With it:** The skill retries once, logs to `failed-jobs.log` with full context, and sends a Telegram alert.
-- **Recovery:** The heartbeat skill (lesson 09) checks `failed-jobs.log` every 2 hours and can retry failed jobs.
-
-## See It: The Four Failure Mechanisms
-
-| Mechanism | What It Does |
-|---|---|
-| **Retry** | Try again after a short delay. Max 2 retries per run. |
-| **Idempotency** | Check if this input was already processed. Skip if yes. |
-| **Dead-letter log** | Write failures to failed-jobs.log with full context for later analysis. |
-| **Graceful degradation** | If one step fails, still complete the others. Partial results beat no results. |
+Without failure handling, a crashed skill goes unnoticed -- no log, no alert. This lesson adds four mechanisms: retry (try again after delay), idempotency (skip if already processed), dead-letter log (write failures to failed-jobs.log), and graceful degradation (partial results beat no results).
 
 ---
 

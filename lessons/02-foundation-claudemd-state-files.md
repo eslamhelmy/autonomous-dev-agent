@@ -31,11 +31,11 @@ State files are plain text files that track what the agent knows and what it has
 
 The core state files:
 
-| File | Purpose | Pattern |
-|---|---|---|
-| `tasks-active.md` | Work in progress | Read before acting, update after acting |
-| `progress.txt` | Action log | Append-only, never overwrite |
-| `preferences.md` | User identity and rules | Read at startup, updated when user corrects |
+| File | Purpose |
+|---|---|
+| `tasks-active.md` | Work in progress |
+| `progress.txt` | Action log |
+| `preferences.md` | User identity and rules |
 
 ---
 
@@ -169,27 +169,6 @@ Append to .claude/progress.txt:
 ```
 
 **Expected output:** One line in `progress.txt`.
-
----
-
-## How to Instruct Claude Code
-
-You just used Claude Code prompts for the first time. Here is the pattern you will use throughout this course:
-
-**The 3-Block Prompt Pattern:**
-
-1. **Intent** -- What you want to accomplish (one sentence)
-2. **Prompt for Claude Code** -- The exact text you type into Claude Code
-3. **Expected Output** -- What you should see when it works
-
-This pattern works because Claude Code responds to clear, specific instructions. Vague prompts get vague results. Structured prompts get predictable results.
-
-**Tips for effective Claude Code prompts:**
-
-- State what to do, not how to think about it
-- Include file paths explicitly
-- Show the expected content or structure
-- One action per prompt when learning; batch when confident
 
 ---
 

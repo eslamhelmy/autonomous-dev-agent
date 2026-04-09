@@ -30,30 +30,17 @@ your-project/
 
 ---
 
-## See It: The Signal-Query-Prioritize-Report Pattern
-
-Most monitoring skills follow the same four steps:
-
-1. **Signal** -- Something triggers the skill. A cron fires. A webhook arrives. You invoke it manually.
-2. **Query** -- The skill gathers data. It calls an API, reads a file, or checks a service.
-3. **Prioritize** -- The skill ranks what it found. Not everything deserves attention.
-4. **Report** -- The skill produces output. A summary, a notification, a state update.
-
-The PR reviewer is a clean example. The cron fires (signal). It queries GitHub for open PRs (query). It flags large diffs, missing tests, security files, and stale PRs (prioritize). It writes a digest and optionally notifies you (report).
-
----
-
 ## See It: What the PR Reviewer Checks
 
 The skill evaluates each open PR on five dimensions:
 
-| Check | What It Looks For | Why It Matters |
-|---|---|---|
-| **Size** | Lines changed > 500 | Large PRs are hard to review and hide bugs |
-| **Security** | Changes to auth, env, secrets, config | Security-sensitive changes need extra eyes |
-| **Tests** | No test files modified | Code without tests is a liability |
-| **Staleness** | Open for more than 3 days | Stale PRs block the team and accumulate merge conflicts |
-| **Conflicts** | Merge conflict status | Cannot merge until resolved |
+| Check | What It Looks For |
+|---|---|
+| **Size** | Lines changed > 500 |
+| **Security** | Changes to auth, env, secrets, config |
+| **Tests** | No test files modified |
+| **Staleness** | Open for more than 3 days |
+| **Conflicts** | Merge conflict status |
 
 Each flag gets a severity: high (blocks merge), medium (needs attention), low (informational).
 

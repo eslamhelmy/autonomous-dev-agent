@@ -260,32 +260,6 @@ Keep all existing entries. The file should now have 4 jobs total.
 
 ---
 
-## Understand It: Skill Composition Through State Files
-
-The standup generator introduces an important pattern: **skills communicate through shared state files, not by calling each other.**
-
-```
-Git Reviewer (noon)
-  → writes commit digest to progress.txt
-
-Daily Planner (5:33 PM)
-  → updates tasks-active.md, tasks-completed.md
-
-Standup Generator (8:30 AM next day)
-  → reads progress.txt + tasks files
-  → composes standup from existing data
-```
-
-No skill imports another skill. No function calls between them. They share a filesystem. This is the same pattern used by Unix pipes -- small tools that read and write to shared streams.
-
-This means:
-- Skills are independently testable (run any one in isolation)
-- Skills are independently replaceable (swap git reviewer for a different one, standup still works)
-- Adding new skills doesn't require modifying existing ones
-- The state files are the API contract between skills
-
----
-
 ## Checkpoint
 
 Your `.claude/` directory should now contain: `skills/git-reviewer/SKILL.md`, `skills/standup-generator/SKILL.md`, and `cron-jobs.json` with 4 jobs (daily-planner, pr-reviewer, git-reviewer, standup-generator).

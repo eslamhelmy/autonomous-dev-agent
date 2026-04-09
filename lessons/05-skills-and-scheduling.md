@@ -56,7 +56,7 @@ The `cron-jobs.json` file defines which skills run and when. Each entry specifie
 
 Key concept: **cron jobs expire after 7 days.** If your agent goes down and comes back up two weeks later, it will not have 14 days of stale cron jobs trying to execute. The heartbeat skill (lesson 09) renews all crons before they expire.
 
-**Important:** `cron-jobs.json` is a convention file, not an OS-level cron system. Claude Code does not execute skills on a schedule by itself. For scheduling to work, you need a running Claude Code session -- typically inside a persistent tmux session (covered in lesson 10). Within that session, you use Claude Code's built-in scheduling (e.g., `/schedule`) to create timed prompts that trigger each skill. The heartbeat skill recreates any expired schedule entries, but it still requires a running Claude Code session to do so.
+**Note:** `cron-jobs.json` is a convention file. Scheduling requires a running Claude Code session (lesson 10 covers persistence).
 
 To run a scheduled skill, you tell Claude Code: "Run the daily-planner skill." Claude Code reads the SKILL.md file, follows the instructions, and updates state.
 
