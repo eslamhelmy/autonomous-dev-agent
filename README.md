@@ -57,6 +57,7 @@ cd autonomous-dev-agent
     meeting-ingest/      # Extract action items from meetings
     learning-loop/       # Consolidate daily corrections
     heartbeat/           # Self-monitoring every 2h
+    skill-evaluator/     # Nightly audit — scores all skills
 ```
 
 ## How It Learns
