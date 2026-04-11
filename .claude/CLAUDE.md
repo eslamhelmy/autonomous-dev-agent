@@ -144,3 +144,5 @@ When any skill or task fails:
 
 <!-- Rules that appear 3+ times in learnings.md get promoted here by the learning-loop skill. -->
 <!-- This section starts empty and grows over time. -->
+
+- **Complete tasks end-to-end in one session when possible.** Context loss between sessions kills momentum. If a task can be investigated, coded, pushed, reviewed, and verified in one sitting — do it. (learned: 2026-04-10, promoted after 3 occurrences)

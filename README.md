@@ -4,7 +4,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Claude Code](https://img.shields.io/badge/Built%20with-Claude%20Code-blueviolet)](https://claude.ai/claude-code)
-[![Course](https://img.shields.io/badge/Course-8%20Lessons-blue)](https://eslamhelmy.tech/blog/dev-agent-course)
+[![Course](https://img.shields.io/badge/Course-9%20Lessons-blue)](https://eslamhelmy.tech/blog/dev-agent-course)
 
 ## What It Does
 
@@ -73,7 +73,7 @@ The agent improves through a simple feedback loop: you correct it, it logs the c
 
 Want to understand why every file exists and how to build this from scratch?
 
-**[Read the step-by-step course (8 lessons)](https://eslamhelmy.tech/blog/dev-agent-course)** — it walks through the architecture, state management, skills, hooks, scheduling, self-healing, and remote access.
+**[Read the step-by-step course (9 lessons)](https://eslamhelmy.tech/blog/dev-agent-course)** — it walks through the architecture, state management, skills, hooks, scheduling, self-healing, and remote access.
 
 ## Author
 
