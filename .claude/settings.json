@@ -17,7 +17,8 @@
       "Bash(head *)",
       "Bash(tail *)",
       "Bash(wc *)",
-      "Bash(cat >> *progress.txt*)"
+      "Bash(cat >> *progress.txt*)",
+      "Edit"
     ],
     "deny": [
       "Bash(git push --force *)",
