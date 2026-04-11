@@ -17,6 +17,7 @@
 | **Meeting Ingest** | 6:37 PM | Extracts action items and decisions from transcripts |
 | **Learning Loop** | 11:47 PM | Consolidates corrections, promotes repeated patterns |
 | **Heartbeat** | Every 2h | Self-monitors crons, state files, deadlines, failures |
+| **Skill Evaluator** | 3:03 AM | Scores all skills on 5 dimensions, recommends improvements |
 
 Every skill reads shared state files, acts, and updates them. Skills communicate through files, not function calls. The agent gets smarter every day because corrections are logged and fed back into future decisions.
 

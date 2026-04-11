@@ -79,6 +79,13 @@ Skills communicate through shared state files, not by calling each other directl
 | `meeting-ingest` | 6:37 PM | Extracts action items and decisions from meeting transcripts |
 | `learning-loop` | 11:47 PM | Consolidates daily corrections, promotes repeated patterns |
 | `heartbeat` | Every 2h | Checks cron health, state validity, task deadlines, failures |
+| `skill-evaluator` | 3:03 AM daily | Scores all skills on 5 dimensions, recommends improvements |
+| `task-triage` | Sunday 8 AM | Prunes task list, archives stale items, targets under 30 |
+| `topic-discovery` | Wednesday 10:03 AM | Feeds content pipeline with new ideas from trends and gaps |
+| `log-monitor` | Weekdays 7:03 AM | Checks Azure workspace logs for exceptions and anomalies |
+| `youtube-to-blog` | On-demand | Converts YouTube transcript (via Gemini) into English blog article |
+| `link-checker` | On-demand | Researches links, cross-validates findings with tiered depth |
+| `course-updater` | On-demand | Applies approved updates to course repo, blog, and landing page |
 
 ## Scheduling
 
@@ -112,6 +119,59 @@ Add it to cron-jobs.json and register it with the heartbeat.
 ```
 
 Claude Code will create the skill file, update the cron config, and add it to the heartbeat's verification list. Test it manually first ("Run the {name} skill"), then monitor `progress.txt` and `failed-jobs.log` for the first few scheduled runs.
+
+## Skill Design Patterns
+
+These patterns emerged from running 14+ skills in production. Apply them when building new skills or hardening existing ones.
+
+### Step 0: Capability Pre-Check
+
+Before a skill does any real work, verify that its external dependencies are available. This is the universal pattern for any skill that calls tools outside the local filesystem.
+
+```markdown
+### Step 0: Capability Pre-Check
+- Verify `az account show` succeeds (log-monitor)
+- Verify Chrome is reachable (browser-verify)
+- Verify WebSearch returns results (link-checker, topic-discovery)
+- If any check fails: log to failed-jobs.log with the specific
+  dependency that failed, and exit without running the skill.
+```
+
+Why this matters: without a pre-check, the skill runs its full process, fails halfway through, and produces a partial or misleading result. The pre-check fails fast with a clear error. The heartbeat picks it up and reports exactly what is broken.
+
+Apply to: any skill with external dependencies (APIs, CLI tools, browser, network).
+
+### Idle Skip
+
+If a skill has nothing to process, exit immediately without logging a run. This prevents noise in progress.txt and keeps the heartbeat from reporting "success" on a skill that did nothing.
+
+```markdown
+### Idle Check
+- Read pipeline.json
+- If no items have status "in_progress": exit silently
+- Do not append to progress.txt
+- Do not generate a report
+```
+
+The content-creator skill uses this pattern. When the pipeline is empty, it exits without a trace. The skill-evaluator can detect "no runs in 7 days" and flag the skill for relevance review -- but only if the lack of runs is unexpected.
+
+Apply to: any skill that processes a queue or pipeline (content-creator, topic-discovery, course-updater).
+
+### Tiered Execution
+
+Not all inputs need the same depth of processing. A quick check handles the common case; a deep check handles the edge cases. This cuts runtime and context usage significantly.
+
+```markdown
+### Tiered Processing
+- Tier 1 (Quick): Known domains, internal links, cached results
+  --> validate format and reachability only
+- Tier 2 (Deep): External URLs, unfamiliar sources, flagged items
+  --> full content fetch, cross-validation, source verification
+```
+
+The link-checker skill uses this pattern. Internal links and known domains get a quick HTTP check. External URLs from unfamiliar sources get full content verification with cross-referencing. This reduced average runtime by 60%.
+
+Apply to: any skill where input complexity varies (link-checker, pr-reviewer, log-monitor).
 
 ## Running Persistently
 
